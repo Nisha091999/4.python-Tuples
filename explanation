@@ -1,0 +1,41 @@
+def sort_tuples(tuples):
+    sorted_tuples = sorted(tuples, key=lambda x: (x[3], x[0].lower(), int(x[1]), int(x[2])))
+    return sorted_tuples
+
+def sort_tuples(tuples): defines a function named sort_tuples that takes a parameter tuples.
+sorted_tuples = sorted(tuples, key=lambda x: (x[3], x[0].lower(), int(x[1]), int(x[2]))) sorts the tuples based on a custom sorting key.
+The sorting key is defined using a lambda function that specifies the order in which the tuples should be sorted. 
+The lambda function takes each tuple x and extracts specific elements from it to determine the sorting order. 
+Here, the elements used for sorting are x[3] (the fourth element in each tuple), x[0].lower() (the first element converted to lowercase), 
+int(x[1]) (the second element converted to an integer), and int(x[2]) (the third element converted to an integer). 
+The tuples are sorted in ascending order based on these key elements.
+return sorted_tuples returns the sorted tuples from the function.
+The remaining code interacts with the user through the console to input tuples, 
+sorts them using the sort_tuples function, and then prints the sorted tuples:
+
+
+tuples = []
+while True:
+    input_str = input("Enter a tuple (name, age, height, gender) or press Enter to finish: ")
+    if not input_str:
+        break
+    tuple_data = tuple(input_str.split(','))
+    tuples.append(tuple_data)
+
+sorted_tuples = sort_tuples(tuples)
+
+for tuple_data in sorted_tuples:
+    print(tuple_data)
+
+tuples = [] initializes an empty list to store the input tuples.
+The while True: loop is an infinite loop that repeatedly prompts the user to enter a tuple or press Enter to finish.
+input_str = input("Enter a tuple (name, age, height, gender) or press Enter to finish: ") displays a prompt message to the user and waits for their input. 
+The entered value is stored in the input_str variable.
+if not input_str: checks if the user pressed Enter (i.e., entered an empty string). If so, it breaks out of the loop.
+tuple_data = tuple(input_str.split(',')) splits the input_str using commas as separators and converts it into a tuple.
+This assumes that the user input follows the format name, age, height, gender.
+tuples.append(tuple_data) adds the input tuple to the tuples list.
+sorted_tuples = sort_tuples(tuples) calls the sort_tuples function, passing the tuples list as an argument. 
+The returned sorted tuples are stored in the sorted_tuples variable.
+The final loop for tuple_data in sorted_tuples: iterates over each tuple in sorted_tuples.
+print(tuple_data) prints each tuple in the console.
