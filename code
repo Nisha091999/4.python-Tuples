@@ -1,0 +1,19 @@
+def sort_tuples(tuples):
+    sorted_tuples = sorted(tuples, key=lambda x: (x[3], x[0].lower(), int(x[1]), int(x[2])))
+    return sorted_tuples
+
+# Get tuples as input via console
+tuples = []
+while True:
+    input_str = input("Enter a tuple (name, age, height, gender) or press Enter to finish: ")
+    if not input_str:
+        break
+    tuple_data = tuple(input_str.split(','))
+    tuples.append(tuple_data)
+
+# Sort the tuples
+sorted_tuples = sort_tuples(tuples)
+
+# Print the sorted tuples
+for tuple_data in sorted_tuples:
+    print(tuple_data)
