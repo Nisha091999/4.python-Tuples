@@ -1,19 +1,36 @@
-def sort_tuples(tuples):
-    sorted_tuples = sorted(tuples, key=lambda x: (x[3], x[0].lower(), int(x[1]), int(x[2])))
-    return sorted_tuples
+class TupleSorter:
+    def __init__(self):
+        self.tuples = []
 
-# Get tuples as input via console
-tuples = []
-while True:
-    input_str = input("Enter a tuple (name, age, height, gender) or press Enter to finish: ")
-    if not input_str:
-        break
-    tuple_data = tuple(input_str.split(','))
-    tuples.append(tuple_data)
+    def sort_tuples(self):
+        sorted_tuples = sorted(self.tuples, key=self.sort_key)
+        return sorted_tuples
 
-# Sort the tuples
-sorted_tuples = sort_tuples(tuples)
+    def sort_key(self, tuple_data):
+        gender = tuple_data[3]
+        name = tuple_data[0].lower()
+        age = int(tuple_data[1])
+        height = int(tuple_data[2])
+        return (gender, name, age, height)
 
-# Print the sorted tuples
-for tuple_data in sorted_tuples:
-    print(tuple_data)
+    def input_tuples(self):
+        while True:
+            input_str = input("Enter a tuple (name, age, height, gender) or press Enter to finish: ")
+            if not input_str:
+                break
+            tuple_data = tuple(input_str.split(','))
+            self.tuples.append(tuple_data)
+
+    def print_sorted_tuples(self):
+        sorted_tuples = self.sort_tuples()
+        for tuple_data in sorted_tuples:
+            print(tuple_data)
+
+# Create an instance of the TupleSorter class
+tuple_sorter = TupleSorter()
+
+# Input tuples
+tuple_sorter.input_tuples()
+
+# Sort and print the tuples
+tuple_sorter.print_sorted_tuples()
