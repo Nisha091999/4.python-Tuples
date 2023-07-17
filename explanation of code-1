@@ -1,0 +1,69 @@
+class TupleSorter:
+    def __init__(self):
+        self.tuples = []
+This code defines a class called TupleSorter. 
+The class has an initializer method __init__ that is called when a new instance of the class is created. 
+It initializes an empty list called tuples as an attribute of the class.
+
+
+    def add_tuple(self, name, age, height, gender):
+        self.tuples.append((name, age, height, gender))
+This code defines a method add_tuple that takes four arguments: name, age, height, and gender. 
+It adds a new tuple with these values to the tuples list of the TupleSorter instance.
+
+
+    def sort_tuples(self):
+        for i in range(len(self.tuples)):
+            for j in range(len(self.tuples) - i - 1):
+                if self.compare_tuples(self.tuples[j], self.tuples[j + 1]):
+                    # Swap the tuples
+                    self.tuples[j], self.tuples[j + 1] = self.tuples[j + 1], self.tuples[j]
+This code defines a method sort_tuples that performs the sorting of the tuples list. 
+It uses the bubble sort algorithm to compare and swap adjacent tuples based on the result of the compare_tuples method.
+The largest tuples "bubble" to the end of the list after each iteration.
+
+
+    def compare_tuples(self, tuple1, tuple2):
+        if tuple1[3] != tuple2[3]:
+            return tuple1[3] > tuple2[3]
+        elif tuple1[0] != tuple2[0]:
+            return tuple1[0] > tuple2[0]
+        elif tuple1[1] != tuple2[1]:
+            return tuple1[1] > tuple2[1]
+        else:
+            return tuple1[2] > tuple2[2]
+This code defines a method compare_tuples that takes two tuples (tuple1 and tuple2) as arguments.
+It compares the tuples based on the same criteria as before: first by the gender (index 3), 
+then by name (index 0), age (index 1), and height (index 2). The method returns True if tuple1 should come before tuple2 in the sorted order, 
+and False otherwise.
+
+
+tuple_sorter = TupleSorter()
+This line creates an instance of the TupleSorter class and assigns it to the variable tuple_sorter.
+
+
+n = int(input("Enter the number of tuples: "))
+This line prompts the user to enter the number of tuples they want to input and stores the value in the variable n.
+
+
+for i in range(n):
+    print(f"Enter details for tuple {i+1}:")
+    name = input("Name: ")
+    age = int(input("Age: "))
+    height = int(input("Height: "))
+    gender = input("Gender: ")
+    tuple_sorter.add_tuple(name, age, height, gender)
+This code iterates n times, prompting the user to enter the details for each tuple. 
+The details include the name, age, height, and gender, which are then added to the tuple_sorter instance using the add_tuple method.
+
+
+tuple_sorter.sort_tuples()
+This line calls the sort_tuples method of the tuple_sorter instance, which sorts the list of tuples stored in tuple_sorter.
+
+
+print("\nSorted tuples:")
+for tuple in tuple_sorter.tuples:
+    print(tuple)
+This code prints the header message "Sorted tuples:" and 
+then iterates over each tuple in the tuples list of the tuple_sorter instance, 
+printing each tuple on a separate line.
