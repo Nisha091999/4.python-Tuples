@@ -1,25 +1,31 @@
-def sort_tuples(tuples):
-    for i in range(len(tuples)):
-        for j in range(len(tuples) - i - 1):
-            if compare_tuples(tuples[j], tuples[j + 1]):
-                # Swap the tuples
-                tuples[j], tuples[j + 1] = tuples[j + 1], tuples[j]
-    return tuples
+class TupleSorter:
+    def __init__(self):
+        self.tuples = []
 
+    def add_tuple(self, name, age, height, gender):
+        self.tuples.append((name, age, height, gender))
 
-def compare_tuples(tuple1, tuple2):
-    if tuple1[3] != tuple2[3]:
-        return tuple1[3] > tuple2[3]
-    elif tuple1[0] != tuple2[0]:
-        return tuple1[0] > tuple2[0]
-    elif tuple1[1] != tuple2[1]:
-        return tuple1[1] > tuple2[1]
-    else:
-        return tuple1[2] > tuple2[2]
+    def sort_tuples(self):
+        for i in range(len(self.tuples)):
+            for j in range(len(self.tuples) - i - 1):
+                if self.compare_tuples(self.tuples[j], self.tuples[j + 1]):
+                    # Swap the tuples
+                    self.tuples[j], self.tuples[j + 1] = self.tuples[j + 1], self.tuples[j]
+
+    def compare_tuples(self, tuple1, tuple2):
+        if tuple1[3] != tuple2[3]:
+            return tuple1[3] > tuple2[3]
+        elif tuple1[0] != tuple2[0]:
+            return tuple1[0] > tuple2[0]
+        elif tuple1[1] != tuple2[1]:
+            return tuple1[1] > tuple2[1]
+        else:
+            return tuple1[2] > tuple2[2]
 
 
 # Example usage
-tuples = []
+tuple_sorter = TupleSorter()
+
 n = int(input("Enter the number of tuples: "))
 
 for i in range(n):
@@ -28,10 +34,10 @@ for i in range(n):
     age = int(input("Age: "))
     height = int(input("Height: "))
     gender = input("Gender: ")
-    tuples.append((name, age, height, gender))
+    tuple_sorter.add_tuple(name, age, height, gender)
 
-sorted_tuples = sort_tuples(tuples)
+tuple_sorter.sort_tuples()
 
 print("\nSorted tuples:")
-for tuple in sorted_tuples:
+for tuple in tuple_sorter.tuples:
     print(tuple)
