@@ -1,0 +1,37 @@
+def sort_tuples(tuples):
+    for i in range(len(tuples)):
+        for j in range(len(tuples) - i - 1):
+            if compare_tuples(tuples[j], tuples[j + 1]):
+                # Swap the tuples
+                tuples[j], tuples[j + 1] = tuples[j + 1], tuples[j]
+    return tuples
+
+
+def compare_tuples(tuple1, tuple2):
+    if tuple1[3] != tuple2[3]:
+        return tuple1[3] > tuple2[3]
+    elif tuple1[0] != tuple2[0]:
+        return tuple1[0] > tuple2[0]
+    elif tuple1[1] != tuple2[1]:
+        return tuple1[1] > tuple2[1]
+    else:
+        return tuple1[2] > tuple2[2]
+
+
+# Example usage
+tuples = []
+n = int(input("Enter the number of tuples: "))
+
+for i in range(n):
+    print(f"Enter details for tuple {i+1}:")
+    name = input("Name: ")
+    age = int(input("Age: "))
+    height = int(input("Height: "))
+    gender = input("Gender: ")
+    tuples.append((name, age, height, gender))
+
+sorted_tuples = sort_tuples(tuples)
+
+print("\nSorted tuples:")
+for tuple in sorted_tuples:
+    print(tuple)
